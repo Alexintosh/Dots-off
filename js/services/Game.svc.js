@@ -261,20 +261,7 @@
 		}
 
 		function canBeSolved(schema){
-			console.log(schema);
-			for(var i = 0; i<schema.length; i++){
-				var string = '';
-				for(var y = 0; y<schema[i].length; y++){
-					string += ', '+schema[i][y];
-					if( schema[i][y] > 0){
-						var t = move(i, y, schema);	
-						//return canBeSolved(t)
-						break;
-					}
-				
-				}
-				console.log(string);
-			}
+			// TODO 	
 		}
 
 		function isSolved(schema){
