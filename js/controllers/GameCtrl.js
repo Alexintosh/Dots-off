@@ -11,6 +11,7 @@
 
 		vm.start = start;
 
+
 		function start(){
 			vm.showStartScreen = false;
 			$rootScope.$broadcast('game.play');
