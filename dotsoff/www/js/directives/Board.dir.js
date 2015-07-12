@@ -15,12 +15,13 @@
 							'<dot ng-repeat="(k, v) in rows.schema[$index] track by k" row="{{$parent.$index}}" col="{{k}}" on="{{v}}"></dot>',
 						'</div>',
 					'</div>',
+					'<button ng-click="restart()" class="button button-positive">Restart</button>',
 				'</div>'
 			].join(''),
 			controller: function($rootScope, $scope, $element, Game, $compile, $timeout, $ionicPopup){
 				var board = $element[0];
-				$scope.dots = [];
 				$scope.render = render;
+				$scope.restart = restart;
 				this.calculateAdjacent = calculateAdjacent;
 
 				$rootScope.$on('game.play', startLevel);
@@ -29,10 +30,20 @@
 					render();
 				}
 
+				function restart(){
+					$scope.moves = 0;
+					$scope.rows = [];
+					$timeout(function(){
+						render();
+					}, 300)
+				}
+
 				function render(){
 					resetAnimation();
 					$scope.moves = 0;
-					$scope.rows = Game.setLevel( Game.settings.level );
+					var lvl = Game.setLevel( Game.settings.level );
+					lvl = JSON.parse(JSON.stringify(lvl));
+					$scope.rows = lvl;
 				}
 
 				function resetAnimation(){
