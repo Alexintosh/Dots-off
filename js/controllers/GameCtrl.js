@@ -5,7 +5,7 @@
 	.module('dotsoff')
 	.controller('GameCtrl', GameCtrl);
 
-	function GameCtrl($rootScope, Game, $timeout){
+	function GameCtrl($rootScope){
 		var vm = this;
 		vm.showStartScreen = true;
 
@@ -27,6 +27,6 @@
 			vm.showStartScreen = false;
 			$rootScope.$broadcast('game.play.endless');
 		}
-		
+
 	}
 })();

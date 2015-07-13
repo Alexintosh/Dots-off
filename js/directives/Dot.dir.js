@@ -23,19 +23,17 @@
 				elem[0].style.background = scope.getColor();
 				elem[0].classList.add('animated');
 				//elem[0].classList.add('zoomIn');
-			
-				if( parseInt(attrs.solution) === 1)
-				elem[0].style.background = '#000';
-				
+
+				if( parseInt(attrs.solution) === 1) elem[0].style.background = '#000';
 
 				attrs.$observe('on', function(value){
 					if( value == '1') {
 						//elem[0].classList.remove('flip');
-						elem[0].classList.remove('zoomIn');						
+						elem[0].classList.remove('zoomIn');
 						elem[0].classList.add('on');
 						$timeout(function(){
 							//elem[0].classList.add('pulse');
-						}, 800)
+						}, 800);
 					}
 					else {
 						elem[0].classList.remove('on');
@@ -60,17 +58,15 @@
 
 				dot.addEventListener('click', click, false);
 				$scope.getColor = getColor;
-				
+
 				function click(){
 					var result = document.getElementsByClassName("dot");
 					for(var i in result){
-						if( result[i].classList !== undefined)
-						result[i].classList.remove('flip');
+						if( result[i].classList !== undefined) result[i].classList.remove('flip');
 					}
+
 					var col = parseInt( $attrs.col, 10);
 					var row = parseInt( $attrs.row, 10);
-					//$element[0].classList.remove('flip');
-					//$element[0].classList.add('flip');
 					$scope.boardCtrl.calculateAdjacent( row, col );
 				}
 
