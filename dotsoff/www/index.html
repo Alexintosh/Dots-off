@@ -7,6 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/ionicons.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -31,13 +32,14 @@
 			<h1 class="animated tada">#DotsOff</h1>
 			<p>
 				<button class="button button-positive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.start()">
+					<i class="ionic ion-ios-game-controller-a"></i>
 					Arcade
 				</button>
 			</p>
 
 			<p>
 			<button class="button button-assertive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.startEndless()">
-				Endless
+				<i class="icon ion-ios-infinite"></i> Endless
 			</button>
 			</p>
 		</div>
