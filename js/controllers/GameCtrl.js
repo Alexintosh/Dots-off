@@ -10,13 +10,18 @@
 		vm.showStartScreen = true;
 
 		vm.start = start;
+		vm.startEndless = startEndless;
 
 
 		function start(){
 			vm.showStartScreen = false;
 			$rootScope.$broadcast('game.play');
 		}
+
+		function startEndless(){
+			vm.showStartScreen = false;
+			$rootScope.$broadcast('game.play.endless');
+		}
 		
-		$timeout(start, 150);
 	}
 })();
