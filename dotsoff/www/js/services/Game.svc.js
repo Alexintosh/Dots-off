@@ -6,7 +6,7 @@
 	.factory('Game', Game);
 
 	function Game(){
-		
+
 		var game = {
 			lvls: getLevels(),
 			setLevel: setLevel,
@@ -30,7 +30,7 @@
 		function getLevels(){
 			var lvls = [];
 			/*
-			lvls.push( { 
+			lvls.push( {
 				schema : [
 					[ 0, 0, 0, 0 ,0 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -41,9 +41,9 @@
 			});
 			*/
 
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
+			lvls.push( {
+				schema: [
+					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 1, 0, 0 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 0, 0, 1, 0, 0 ],
@@ -51,9 +51,9 @@
 				]
 			});
 
-			lvls.push( { 
-				schema : [
-					[ 1, 0, 0, 0 ,0 ],
+			lvls.push( {
+				schema: [
+					[ 1, 0, 0, 0, 0 ],
 					[ 0, 1, 0, 0, 0 ],
 					[ 0, 0, 1, 0, 0 ],
 					[ 0, 0, 0, 1, 0 ],
@@ -61,9 +61,9 @@
 				]
 			});
 
-			lvls.push( { 
-				schema : [
-					[ 1, 1, 0, 1 ,1 ],
+			lvls.push( {
+				schema: [
+					[ 1, 1, 0, 1, 1 ],
 					[ 1, 0, 1, 0, 1 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 1, 0, 1, 0, 1 ],
@@ -71,35 +71,35 @@
 				]
 			});
 
-			lvls.push( { 
-				schema : [
-					[ 0, 1, 0, 1 ,0 ],
+			lvls.push( {
+				schema: [
+					[ 0, 1, 0, 1, 0 ],
 					[ 1, 1, 0, 1, 1 ],
 					[ 0, 1, 0, 1, 0 ],
 					[ 1, 0, 1, 0, 1 ],
 					[ 1, 0, 1, 0, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 1, 0, 0, 0 ,1 ],
+			lvls.push( {
+				schema: [
+					[ 1, 0, 0, 0, 1 ],
 					[ 1, 1, 0, 1, 1 ],
 					[ 0, 0, 1, 0, 0 ],
 					[ 1, 0, 1, 0, 0 ],
 					[ 1, 0, 1, 1, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 1, 1, 0, 1 ,1 ],
+			lvls.push( {
+				schema: [
+					[ 1, 1, 0, 1, 1 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 1, 1, 0, 1, 1 ],
 					[ 0, 0, 0, 0, 1 ],
 					[ 1, 1, 0, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 1, 1, 1, 1, 1 ],
 					[ 1, 1, 1, 1, 1 ],
 					[ 1, 1, 1, 1, 1 ],
@@ -107,8 +107,8 @@
 					[ 1, 1, 1, 1, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 0, 0, 0, 1, 1 ],
 					[ 0, 0, 0, 1, 1 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -116,8 +116,8 @@
 					[ 1, 1, 0, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 1, 1, 1, 1, 1 ],
@@ -125,17 +125,17 @@
 					[ 0, 0, 0, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
+			lvls.push( {
+				schema: [
+					[ 0, 0, 0, 0, 0 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 0, 1, 1, 1, 0 ],
 					[ 0, 0, 0, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 1, 1, 0, 1, 1 ],
 					[ 1, 1, 0, 1, 1 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -143,8 +143,8 @@
 					[ 1, 1, 0, 1, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 1, 1, 1, 1, 1 ],
 					[ 1, 0, 0, 0, 1 ],
 					[ 1, 0, 0, 0, 1 ],
@@ -152,8 +152,8 @@
 					[ 1, 1, 1, 1, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 0, 0, 1, 1, 1 ],
 					[ 0, 0, 0, 1, 1 ],
 					[ 1, 0, 0, 0, 1 ],
@@ -161,17 +161,8 @@
 					[ 1, 1, 1, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
-					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ]
-				]
-			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 1, 0, 0, 0, 1 ],
 					[ 0, 1, 0, 1, 0 ],
 					[ 0, 0, 1, 0, 0 ],
@@ -179,8 +170,8 @@
 					[ 1, 0, 0, 0, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 1, 1, 1, 1, 1 ],
 					[ 1, 0, 1, 0, 1 ],
 					[ 1, 1, 1, 1, 1 ],
@@ -188,8 +179,8 @@
 					[ 1, 1, 1, 1, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
+			lvls.push( {
+				schema: [
 					[ 0, 0, 0, 0, 1 ],
 					[ 0, 0, 0, 1, 1 ],
 					[ 0, 0, 1, 0, 1 ],
@@ -197,27 +188,27 @@
 					[ 1, 1, 1, 1, 1 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
+			lvls.push( {
+				schema: [
 					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0 ]
-				]
-			});
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ]
 				]
 			});
-			lvls.push( { 
-				schema : [
-					[ 0, 0, 0, 0 ,0 ],
+			lvls.push( {
+				schema: [
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ]
+				]
+			});
+			lvls.push( {
+				schema: [
+					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -229,13 +220,13 @@
 
 		function setLevel( level ){
 			if( game.lvls[level] !== undefined && level != 'endless') return game.lvls[level];
-			return  generate();
+			return generate();
 		}
 
 		function generate(){
 			//var schema = [];
 			var schema = [
-					[ 0, 0, 0, 0 ,0 ],
+					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -243,9 +234,9 @@
 			];
 			var solution = [];
 
-			for(var i = 0; i<game.settings.difficulty; i++){
-				var x = Math.round( Math.random() * 4);
-				var y = Math.round( Math.random() * 4);	
+			for(var i = 0; i < game.settings.difficulty; i++ ){
+				var x = Math.round( Math.random() * game.settings.grid);
+				var y = Math.round( Math.random() * game.settings.grid);
 				solution.push([y, x]);
 				schema = move(y, x, schema);
 			}
@@ -259,43 +250,37 @@
 
 		function move(y, x, schema){
 			var rows = schema;
-			if( y > game.settings.grid || x > game.settings.grid )
-				return rows;
-			
+			if( y > game.settings.grid || x > game.settings.grid ) return rows;
+
 			if( rows[y][x] == 1 ) rows[y][x] = 0;
 			else rows[y][x] = 1;
 			//Up
-			if(rows[(y+1)] !== undefined){
-				if( rows[(y+1)][x] == 1 ) rows[(y+1)][x] = 0;
-				else rows[(y+1)][x] = 1;
+			if(rows[(y + 1)] !== undefined){
+				if( rows[(y + 1)][x] == 1 ) rows[(y + 1)][x] = 0;
+				else rows[(y + 1)][x] = 1;
 			}
 			//Down
-			if(rows[(y-1)] !== undefined){
-				if( rows[y-1][x] == 1 ) rows[y-1][x] = 0;
-				else rows[y-1][x] = 1;
+			if(rows[(y - 1)] !== undefined){
+				if( rows[y - 1][x] == 1 ) rows[y - 1][x] = 0;
+				else rows[y - 1][x] = 1;
 			}
 			//Right
-			if(rows[y][(x+1)] !== undefined){
-				if( rows[y][x+1] == 1 ) rows[y][x+1] = 0;
-				else rows[y][x+1] = 1;
+			if(rows[y][(x + 1)] !== undefined){
+				if( rows[y][x + 1] == 1 ) rows[y][x + 1] = 0;
+				else rows[y][x + 1] = 1;
 			}
 			//Left
-			if(rows[y][(x-1)] !== undefined){
-				if( rows[y][x-1] == 1 ) rows[y][x-1] = 0;
-				else rows[y][x-1] = 1;
+			if(rows[y][(x - 1)] !== undefined){
+				if( rows[y][x - 1] == 1 ) rows[y][x - 1] = 0;
+				else rows[y][x - 1] = 1;
 			}
 			return schema;
 		}
 
-		function canBeSolved(schema){
-			// TODO 	
-		}
-
 		function isSolved(schema){
-			for(var i = 0; i<schema.length; i++)	
-				for(var y = 0; y<schema[i].length; y++)	
-					if( schema[i][y] > 0)
-						return false
+			for(var i = 0; i < schema.length; i++ )
+				for(var y = 0; y < schema[i].length; y++ )
+					if( schema[i][y] > 0) return false;
 
 			return true;
 		}

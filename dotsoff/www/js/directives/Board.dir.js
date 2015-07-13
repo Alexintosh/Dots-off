@@ -5,7 +5,7 @@
 	.module('dotsoff')
 	.directive('board', Board);
 
-	function Board($compile){
+	function Board(){
 		return {
 			restrict: 'E',
 			template: [
@@ -29,7 +29,6 @@
 				'</div>'
 			].join(''),
 			controller: function($rootScope, $scope, $element, Game, $compile, $timeout, $ionicPopup, $interval){
-				var board = $element[0];
 				var timer;
 				$scope.render = render;
 				$scope.restart = restart;
@@ -47,7 +46,7 @@
 					$scope.mode = 'endless';
 					startLevel();
 				});
-				
+
 				function startLevel(){
 					render();
 				}
@@ -65,8 +64,7 @@
 				function startTimer(){
 					timer = $interval(function(){
 						$scope.time--;
-						if( $scope.time < 1)
-							endGame(false);
+						if( $scope.time < 1) endGame(false);
 					}, 1000);
 				}
 
@@ -77,7 +75,7 @@
 					$scope.rows = [];
 					$timeout(function(){
 						render();
-					}, 100)
+					}, 100);
 				}
 
 				function menu(){
@@ -89,21 +87,24 @@
 
 				function render(){
 					resetAnimation();
+					var lvl;
 					$scope.pause = false;
 					$scope.moves = 0;
 					$scope.gameStarted = 1;
 					$scope.time = Game.settings.levelTimer;
-					if($scope.mode == 'endless')
-						var lvl = Game.setLevel( 'endless' );
-					else
-						var lvl = Game.setLevel( Game.settings.level );
+
+					if($scope.mode == 'endless') lvl = Game.setLevel( 'endless' );
+					else lvl = Game.setLevel( Game.settings.level );
+
 					lvl = JSON.parse(JSON.stringify(lvl));
 					$scope.rows = lvl;
 					startTimer();
 				}
 
 				function isSolution(y, x){
-					return 0;	
+					return 0;
+					/*
+					TODO
 					for(var i in $scope.rows.solution){
 						var comb = $scope.rows.solution[i];
 						if( (comb[0] == x) && (comb[1] == y) ){
@@ -111,7 +112,7 @@
 						}
 					}
 					return 0;
-					
+					*/
 				}
 
 				function resetAnimation(){
@@ -128,12 +129,12 @@
 				function calculateAdjacent(y, x){
 					if($scope.pause) return false;
 					var rows = $scope.rows.schema;
-					var _rows = Game.move(y, x, rows);	
+					var _rows = Game.move(y, x, rows);
 
 					$scope.$apply(function(){
 						$scope.rows = { schema: _rows };
 						$scope.moves++;
-						if( Game.isSolved(rows) ) endGame(true);	
+						if( Game.isSolved(rows) ) endGame(true);
 					});
 				}
 
@@ -141,18 +142,18 @@
 					var win = _win || false;
 					$interval.cancel(timer);
 					var tpl = {};
-					
+
 					setPause();
-					
+
 					if(win){
 						tpl.title = "You won!";
-						tpl.template = $scope.moves+' moves and '+(Game.settings.levelTimer - $scope.time)+' seconds';	
-						tpl.button = 'Next level'
+						tpl.template = $scope.moves + ' moves and ' + (Game.settings.levelTimer - $scope.time) + ' seconds';
+						tpl.button = 'Next level';
 					} else {
-						tpl.title = "You lost :("
-						tpl.template = 'Out of time!<br/> <strong>'+$scope.moves+'</strong> moves';
-						tpl.button = 'Restart'
-					} 
+						tpl.title = "You lost :(";
+						tpl.template = 'Out of time!<br/> <strong>' + $scope.moves + '</strong> moves';
+						tpl.button = 'Restart';
+					}
 					$timeout(function(){
 						var alertPopup = $ionicPopup.alert({
 							title: tpl.title,
@@ -167,7 +168,7 @@
 							}
 
 							var next = Game.setLevel( Game.settings.level );
-							if(next) render(); 
+							if(next) render();
 						});
 
 					}, 600);

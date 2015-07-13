@@ -6,18 +6,24 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var eslint = require('gulp-eslint');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  js: ['./www/js/*/*.js']
 };
+
 
 gulp.task('default', ['sass']);
 
+gulp.task('config', require('gulp-cordova-config'));
+gulp.task('bump', require('gulp-cordova-bump'));
+
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
-    .pipe(sass({
-      errLogToConsole: true
-    }))
+    .pipe(sass())
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
@@ -27,8 +33,31 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('img', function() {
+  return gulp.src('./images/*')
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{
+        removeViewBox: false
+      }],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest('./www/img'));
+});
+
+gulp.task('lint', function() {
+  // Pass the code we want to lint
+  return gulp.src(['./www/js/*/*.js'])
+    // Send that to eslint
+    .pipe(eslint())
+    // then format the out put to something readable
+    .pipe(eslint.format('stylish', process.stderr));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  // lint while ionic serve
+  gulp.watch(paths.js, ['lint']);
 });
 
 gulp.task('install', ['git-check'], function() {
