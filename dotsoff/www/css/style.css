@@ -1,5 +1,17 @@
 /* Empty. Add your own CSS if you like */
 
+
+.platform-browser .main-content{
+	width:500px;
+	margin:0 auto;
+}
+
+.platform-ios .main-content, .platform-android .main-content{
+	width:inherit;
+	margin: inherit;
+}
+
+
 .startScreen{
 	padding:20px;
 	text-align:center;
@@ -61,6 +73,13 @@
 	border-top: 1px solid #999;
 	padding: 20px;
 }
+.platform-browser .commands {
+	width: 500px;
+}
+.platform-ios .commands, .platform-android .commands {
+	width: 100%;
+}
+
 
 @media only screen 
 and (min-device-width : 320px) 
