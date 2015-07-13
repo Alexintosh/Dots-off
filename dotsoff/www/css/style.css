@@ -1,4 +1,22 @@
 /* Empty. Add your own CSS if you like */
+
+.startScreen{
+	padding:20px;
+	text-align:center;
+}
+.startScreen button{
+	font-weight: bold;
+	border-radius:20px;
+	width: 162px;
+	min-height: 31px !important;	
+	line-height:0px;
+}
+
+.startScreen h1{
+	margin: 50px 0;
+	font-weight: 200;
+}
+
 .screen{
 	background: #fff;
 	padding: 20% 0;
@@ -28,6 +46,5 @@
 
 .on {
 	background: #DCD021 !important;
-	background: #fff !important;
-	border:1px solid;
+	background: #aaa !important;
 }

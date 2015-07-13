@@ -20,12 +20,26 @@
 
 		function Settings(){
 			return {
-				level: 0
+				level: 0,
+				grid: 4,
+				difficulty: 7
 			};
 		}
 
 		function getLevels(){
 			var lvls = [];
+			/*
+			lvls.push( { 
+				schema : [
+					[ 0, 0, 0, 0 ,0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ]
+				]
+			});
+			*/
+
 			lvls.push( { 
 				schema : [
 					[ 0, 0, 0, 0 ,0 ],
@@ -213,28 +227,43 @@
 		}
 
 		function setLevel( level ){
-			if( game.lvls[level] !== undefined) return game.lvls[level];
-			return {
-				schema: generate()
-			};
+			console.log(level);
+			if( game.lvls[level] !== undefined && level != 'endless') return game.lvls[level];
+			return  generate();
 		}
 
 		function generate(){
-			var schema = [];
-			for(var i = 0; i<5; i++){
-				schema[i] = [];
-				for(var y = 0; y<5; y++){
-					var val = Math.round(Math.random());
-					schema[i][y] = val;
-				}
+			//var schema = [];
+			var schema = [
+					[ 0, 0, 0, 0 ,0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0, 0 ]
+			];
+			var solution = [];
+
+			for(var i = 0; i<game.settings.difficulty; i++){
+				var x = Math.round( Math.random() * 4);
+				var y = Math.round( Math.random() * 4);	
+				solution.push([y, x]);
+				schema = move(y, x, schema);
 			}
-			return schema;
+
+			return {
+				schema: schema,
+				solution: solution
+			};
 
 		}
 
 		function move(y, x, schema){
 			var rows = schema;
-
+			if( y > game.settings.grid || x > game.settings.grid )
+				return rows;
+			
+			console.log('y: '+y+' / x: '+x);
+			
 			if( rows[y][x] == 1 ) rows[y][x] = 0;
 			else rows[y][x] = 1;
 			//Up

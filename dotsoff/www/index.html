@@ -27,9 +27,21 @@
   <body ng-app="dotsoff">
   	<ion-content ng-controller="GameCtrl as vm" scroll="false" class="main-content no-header" ng-class="{ &apos;home&apos;: showStartScreen }">
 		
-		<button class="button button-positive" ng-if="vm.showStartScreen" ng-click="vm.start()">
-			Start
-		</button>
+		<div class="startScreen" ng-if="vm.showStartScreen">
+			<h1 class="animated tada">#DotsOff</h1>
+			<p>
+				<button class="button button-positive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.start()">
+					Arcade
+				</button>
+			</p>
+
+			<p>
+			<button class="button button-assertive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.startEndless()">
+				Endless
+			</button>
+			</p>
+		</div>
+
 
 		<board></board>
 	</ion-content>

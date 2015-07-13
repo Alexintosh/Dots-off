@@ -23,6 +23,10 @@
 				elem[0].style.background = scope.getColor();
 				elem[0].classList.add('animated');
 				elem[0].classList.add('zoomIn');
+			
+				if( parseInt(attrs.solution) === 1)
+				elem[0].style.background = '#000';
+				
 
 				attrs.$observe('on', function(value){
 					if( value == '1') {
@@ -36,6 +40,7 @@
 					else {
 						elem[0].classList.remove('on');
 						elem[0].classList.remove('pulse');
+						elem[0].classList.remove('zoomIn');
 						elem[0].classList.add('zoomIn');
 					}
 					scope.val = attrs.on;
