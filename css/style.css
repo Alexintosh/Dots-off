@@ -4,13 +4,17 @@
 	padding:20px;
 	text-align:center;
 }
-.startScreen button{
+.startScreen button, .screen button{
 	font-weight: bold;
 	border-radius:20px;
-	width: 162px;
+	min-width: 122px;
 	min-height: 31px !important;	
-	line-height:0px;
 }
+.startScreen button i{
+	font-weight: bold;
+	font-size:22px;
+}
+
 
 .startScreen h1{
 	margin: 50px 0;
@@ -31,7 +35,7 @@
 
 .dot {
 	border-radius: 100px;
-	background: #8E5DAA;
+	background: transparent;
 	width: 3em;
 	height: 3em;
 	float:left;
@@ -47,4 +51,24 @@
 .on {
 	background: #DCD021 !important;
 	background: #aaa !important;
+}
+
+.commands {
+	position: fixed;
+	bottom: 0px;
+	margin: 30px auto 0px auto;
+	width: 100%;
+	border-top: 1px solid #999;
+	padding: 20px;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+.dot {
+	width:2.3em;
+	height:2.3em;
+}
+
 }

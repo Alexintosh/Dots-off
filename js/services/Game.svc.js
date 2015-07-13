@@ -22,7 +22,8 @@
 			return {
 				level: 0,
 				grid: 4,
-				difficulty: 7
+				difficulty: 7,
+				levelTimer: 60
 			};
 		}
 
@@ -227,7 +228,6 @@
 		}
 
 		function setLevel( level ){
-			console.log(level);
 			if( game.lvls[level] !== undefined && level != 'endless') return game.lvls[level];
 			return  generate();
 		}
@@ -261,8 +261,6 @@
 			var rows = schema;
 			if( y > game.settings.grid || x > game.settings.grid )
 				return rows;
-			
-			console.log('y: '+y+' / x: '+x);
 			
 			if( rows[y][x] == 1 ) rows[y][x] = 0;
 			else rows[y][x] = 1;

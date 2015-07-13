@@ -22,7 +22,7 @@
 
 				elem[0].style.background = scope.getColor();
 				elem[0].classList.add('animated');
-				elem[0].classList.add('zoomIn');
+				//elem[0].classList.add('zoomIn');
 			
 				if( parseInt(attrs.solution) === 1)
 				elem[0].style.background = '#000';
@@ -31,17 +31,16 @@
 				attrs.$observe('on', function(value){
 					if( value == '1') {
 						//elem[0].classList.remove('flip');
+						elem[0].classList.remove('zoomIn');						
 						elem[0].classList.add('on');
 						$timeout(function(){
-							elem[0].classList.remove('zoomIn');						
-							elem[0].classList.add('pulse');
+							//elem[0].classList.add('pulse');
 						}, 800)
 					}
 					else {
 						elem[0].classList.remove('on');
 						elem[0].classList.remove('pulse');
-						elem[0].classList.remove('zoomIn');
-						elem[0].classList.add('zoomIn');
+						elem[0].classList.add('fadeIn');
 					}
 					scope.val = attrs.on;
 				});

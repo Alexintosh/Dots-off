@@ -12,6 +12,11 @@
 		vm.start = start;
 		vm.startEndless = startEndless;
 
+		$rootScope.$on('game.menu', menu);
+
+		function menu(){
+			vm.showStartScreen = true;
+		}
 
 		function start(){
 			vm.showStartScreen = false;
