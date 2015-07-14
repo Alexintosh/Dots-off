@@ -16,29 +16,31 @@
 			].join(''),
 			replace: true,
 			link: function(scope, elem, attrs, boardCtrl) {
+				var animation = 'zoomIn';
 				scope.col = attrs.col;
 				scope.row = attrs.row;
 				scope.boardCtrl = boardCtrl;
 
 				elem[0].style.background = scope.getColor();
 				elem[0].classList.add('animated');
-				//elem[0].classList.add('zoomIn');
+				elem[0].classList.add('zoomIn');
 
-				if( parseInt(attrs.solution) === 1) elem[0].style.background = '#000';
+				//if( parseInt(attrs.solution) === 1) elem[0].style.background = '#000';
+
+				if(attrs.on == '1'){
+					$timeout(function(){
+						elem[0].classList.add('pulse');
+					}, 600);
+				}	
 
 				attrs.$observe('on', function(value){
+					elem[0].className = 'dot animated';
 					if( value == '1') {
-						//elem[0].classList.remove('flip');
-						elem[0].classList.remove('zoomIn');
 						elem[0].classList.add('on');
-						$timeout(function(){
-							//elem[0].classList.add('pulse');
-						}, 800);
 					}
 					else {
-						elem[0].classList.remove('on');
-						elem[0].classList.remove('pulse');
-						elem[0].classList.add('fadeIn');
+						//if(scope.boardCtrl.moves <= 0) 
+						elem[0].classList.add(animation);
 					}
 					scope.val = attrs.on;
 				});
@@ -56,15 +58,14 @@
 					'#DBCF1F'
 				];
 
+				$rootScope.$on('game.level.end', function(){
+					$element[0].className = 'dot animated zoomOut';
+				});
+
 				dot.addEventListener('click', click, false);
 				$scope.getColor = getColor;
 
 				function click(){
-					var result = document.getElementsByClassName("dot");
-					for(var i in result){
-						if( result[i].classList !== undefined) result[i].classList.remove('flip');
-					}
-
 					var col = parseInt( $attrs.col, 10);
 					var row = parseInt( $attrs.row, 10);
 					$scope.boardCtrl.calculateAdjacent( row, col );

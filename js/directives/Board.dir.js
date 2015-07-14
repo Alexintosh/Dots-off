@@ -32,6 +32,7 @@
 			].join(''),
 			controller: function($rootScope, $scope, $element, Game, $compile, $timeout, $ionicPopup, $interval){
 				var timer;
+				var c = this;
 				$scope.render = render;
 				$scope.restart = restart;
 				$scope.setPause = setPause;
@@ -39,10 +40,12 @@
 				$scope.isSolution = isSolution;
 				$scope.time = Game.settings.levelTimer;
 				$scope.levelCounter = Game.settings.level + 1;
+				$scope.moves = 0;				
 				$scope.pause = false;
 				$scope.mode = 'default';
 				$scope.gameStarted = 0;
-				this.calculateAdjacent = calculateAdjacent;
+				c.calculateAdjacent = calculateAdjacent;
+				c.moves = $scope.moves;
 
 				$rootScope.$on('game.play', function(){
 					$scope.levelCounter = Game.settings.level + 1;
@@ -94,10 +97,10 @@
 				}
 
 				function render(){
-					resetAnimation();
 					var lvl;
 					$scope.pause = false;
 					$scope.moves = 0;
+					c.moves = 0;
 					$scope.gameStarted = 1;
 					$scope.time = Game.settings.levelTimer;
 
@@ -123,17 +126,6 @@
 					*/
 				}
 
-				function resetAnimation(){
-					var result = document.getElementsByClassName("dot");
-					for(var i in result){
-						if( result[i].classList !== undefined){
-							result[i].className = 'dot animated';
-							//result[i].classList.add('rotateIn');
-							//result[i].classList.remove('pulse');
-						}
-					}
-				}
-
 				function calculateAdjacent(y, x){
 					if($scope.pause) return false;
 					var rows = $scope.rows.schema;
@@ -142,11 +134,13 @@
 					$scope.$apply(function(){
 						$scope.rows = { schema: _rows };
 						$scope.moves++;
+						c.moves++;
 						if( Game.isSolved(rows) ) endGame(true);
 					});
 				}
 
 				function endGame(_win){
+					$rootScope.$broadcast('game.level.end');
 					var win = _win || false;
 					$interval.cancel(timer);
 					var tpl = {};
@@ -179,7 +173,10 @@
 							var next = Game.setLevel( Game.settings.level );
 							if(next) {
 								$scope.levelCounter++;
-								render();
+								$scope.rows = [];
+								$timeout(function(){
+									render();
+								}, 100);
 							}
 						});
 
