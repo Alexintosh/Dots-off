@@ -49,6 +49,7 @@
 }
 
 .dot {
+	-webkit-transform: translateZ(0);
 	border-radius: 100px;
 	background: transparent;
 	width: 3em;
