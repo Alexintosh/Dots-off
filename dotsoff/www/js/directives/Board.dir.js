@@ -11,10 +11,12 @@
 			template: [
 				'<div class="screen" ng-if="gameStarted">',
 					'<div class="bar bar-header bar-light">',
-						'<div class="h1 title"><i class="icon ion-android-time"> {{time}}</i></div>',
+						'<div class="h1 title">Level {{levelCounter}}&nbsp;',
+							'<span ng-if="mode == \'default\'"> | <i class="icon ion-android-time"> {{time}}</i></span>',
+						'</div>',
 						'<button ng-click="setPause()" class="button button-clear button-positive">',
-							'<span ng-if="!pause">Pause <i class="icon ion-pause"></i></span>',
-							'<span ng-if="pause">Play <i class="icon ion-play"></i></span>',
+							'<span ng-if="!pause">Pause</span>',
+							'<span ng-if="pause">Play</span>',
 						'</button>',
 					'</div>',
 					'<div class="board">',
@@ -36,14 +38,19 @@
 				$scope.menu = menu;
 				$scope.isSolution = isSolution;
 				$scope.time = Game.settings.levelTimer;
+				$scope.levelCounter = Game.settings.level + 1;
 				$scope.pause = false;
 				$scope.mode = 'default';
 				$scope.gameStarted = 0;
 				this.calculateAdjacent = calculateAdjacent;
 
-				$rootScope.$on('game.play', startLevel);
+				$rootScope.$on('game.play', function(){
+					$scope.levelCounter = Game.settings.level + 1;
+					startLevel();
+				});
 				$rootScope.$on('game.play.endless', function(){
 					$scope.mode = 'endless';
+					$scope.levelCounter = 1;
 					startLevel();
 				});
 
@@ -62,6 +69,7 @@
 				}
 
 				function startTimer(){
+					if( $scope.mode != 'default' ) return true;
 					timer = $interval(function(){
 						$scope.time--;
 						if( $scope.time < 1) endGame(false);
@@ -147,7 +155,8 @@
 
 					if(win){
 						tpl.title = "You won!";
-						tpl.template = $scope.moves + ' moves and ' + (Game.settings.levelTimer - $scope.time) + ' seconds';
+						tpl.template = $scope.moves + ' moves ' +
+						( $scope.mode == 'default' ? 'and ' + (Game.settings.levelTimer - $scope.time) + ' seconds' : '');
 						tpl.button = 'Next level';
 					} else {
 						tpl.title = "You lost :(";
@@ -168,7 +177,10 @@
 							}
 
 							var next = Game.setLevel( Game.settings.level );
-							if(next) render();
+							if(next) {
+								$scope.levelCounter++;
+								render();
+							}
 						});
 
 					}, 600);

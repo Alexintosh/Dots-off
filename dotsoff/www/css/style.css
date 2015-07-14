@@ -11,6 +11,9 @@
 	margin: inherit;
 }
 
+.screen .bar-header{
+	border-bottom: 1px solid #ddd;
+}
 
 .startScreen{
 	padding:20px;

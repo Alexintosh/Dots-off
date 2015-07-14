@@ -225,6 +225,7 @@
 
 		function generate(){
 			//var schema = [];
+			/*
 			var schema = [
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ],
@@ -232,6 +233,19 @@
 					[ 0, 0, 0, 0, 0 ],
 					[ 0, 0, 0, 0, 0 ]
 			];
+			*/
+
+			var schema = function(){
+				var t = [];
+				for(var i = 0; i <= game.settings.grid; i++ ){
+					t[i] = [];
+					for(var j = 0; j <= game.settings.grid; j++ ){
+						t[i].push(0);
+					}
+				}
+				return t;
+			}();
+
 			var solution = [];
 
 			for(var i = 0; i < game.settings.difficulty; i++ ){
