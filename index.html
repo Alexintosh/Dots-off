@@ -19,9 +19,11 @@
 
 
     <!-- Services -->
+    <script src="js/services/LocalStorage.svc.js"></script>
     <script src="js/services/Game.svc.js"></script>
     <!-- Controller -->
     <script src="js/controllers/GameCtrl.js"></script>
+    <script src="js/controllers/MenuCtrl.js"></script>
     <!-- Directives -->
     <script src="js/directives/Board.dir.js"></script>
     <script src="js/directives/Dot.dir.js"></script>
@@ -32,19 +34,30 @@
 		<div class="startScreen" ng-if="vm.showStartScreen">
 			<h1 class="animated tada">#DotsOff</h1>
 			<p>
-				<button class="button button-positive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.start()">
+				<button class="button button-positive animated zoomIn" ng-click="vm.arcade()">
 					<i class="ionic ion-ios-game-controller-a"></i>
 					Arcade
 				</button>
 			</p>
 
 			<p>
-			<button class="button button-assertive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.startEndless()">
-				<i class="icon ion-ios-infinite"></i> Endless
-			</button>
+				<button class="button button-assertive animated zoomIn" ng-if="vm.showStartScreen" ng-click="vm.startEndless()">
+					<i class="icon ion-ios-infinite"></i> Endless
+				</button>
 			</p>
 		</div>
-
+		<div class="screen menuScreen" ng-if="vm.showMenu">
+			<div class="bar bar-header bar-light">
+				<div class="h1 title">Arcade mode</div>
+			</div>
+			<div class="dot red" ng-repeat="k in vm.lvls track by $index" style="background:{{vm.colors[$index]}}" ng-click="vm.setLevel($index);">
+				<span ng-if="$index <= vm.level">{{::$index+1}}</span>
+				<span ng-if="$index > vm.level"><i class="icon ion-android-lock"></i></span>
+			</div>
+			<button class="button button-positive clear animated zoomIn" ng-click="vm.menu()">
+				Menu
+			</button>
+		</div>
 		<board></board>
 	</ion-content>
   </body>

@@ -11,7 +11,6 @@
 			restrict: 'E',
 			template: [
 				'<div class="dot">',
-					//'{{row}},{{col}} - {{val}}',
 				'</div>'
 			].join(''),
 			replace: true,
@@ -39,6 +38,7 @@
 						elem[0].classList.add('on');
 					}
 					else {
+						//Animation just on first move?
 						//if(scope.boardCtrl.moves <= 0) 
 						elem[0].classList.add(animation);
 					}
