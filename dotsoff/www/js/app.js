@@ -7,7 +7,9 @@ angular.module('dotsoff', ['ionic', 'ionic.service.core', 'ionic.service.analyti
 })
 .run(function($ionicPlatform, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
-	$ionicAnalytics.register();
+	$ionicAnalytics.register({
+		dryRun: true
+	});
 	if(window.cordova && window.cordova.plugins.Keyboard) {
 		cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	}

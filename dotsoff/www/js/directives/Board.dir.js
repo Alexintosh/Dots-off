@@ -11,12 +11,15 @@
 			template: [
 				'<div class="screen" ng-if="gameStarted">',
 					'<div class="bar bar-header bar-light">',
-						'<div class="h1 title">Level {{levelCounter}}&nbsp;',
-							'<span ng-if="mode == \'default\'"> | <i class="icon ion-android-time"> {{time}}</i></span>',
-						'</div>',
 						'<button ng-click="setPause()" class="button button-clear button-positive">',
 							'<span ng-if="!pause">Pause</span>',
 							'<span ng-if="pause">Play</span>',
+						'</button>',
+						'<div class="h1 title">Level {{levelCounter}}&nbsp;',
+							'<span ng-if="mode == \'default\'"> | <i class="icon ion-android-time"> {{time}}</i></span>',
+						'</div>',
+						'<button ng-if="mode == \'default\'" ng-click="changeState(\'arcade\')" class="button button-clear button-positive">',
+							'<i class="icon ion-navicon-round"></i>',
 						'</button>',
 					'</div>',
 					'<div class="board">',
@@ -26,17 +29,17 @@
 					'</div>',
 					'<p class="commands">',
 						'<button ng-click="restart()" ng-if="gameStarted" class="button button-outline button-positive">Restart</button>',
-						'<button ng-click="menu()" ng-if="gameStarted" class="button button-outline button-calm">Menu</button>',
+						'<button ng-click="changeState(\'menu\')" ng-if="gameStarted" class="button button-outline button-calm">Menu</button>',
 					'</p>',
 				'</div>'
 			].join(''),
-			controller: function($rootScope, $scope, $element, Game, $compile, $timeout, $ionicPopup, $interval){
+			controller: function($rootScope, $scope, $element, Game, $compile, $timeout, $ionicPopup, $interval, $localStorage){
 				var timer;
 				var c = this;
 				$scope.render = render;
+				$scope.changeState = changeState;
 				$scope.restart = restart;
 				$scope.setPause = setPause;
-				$scope.menu = menu;
 				$scope.isSolution = isSolution;
 				$scope.time = Game.settings.levelTimer;
 				$scope.levelCounter = Game.settings.level + 1;
@@ -89,11 +92,11 @@
 					}, 100);
 				}
 
-				function menu(){
+				function changeState(state){
 					$interval.cancel(timer);
 					$scope.mode = 'default';
 					$scope.gameStarted = 0;
-					$rootScope.$broadcast('game.menu');
+					$rootScope.$broadcast('game.' + state);
 				}
 
 				function render(){
@@ -172,6 +175,7 @@
 
 							var next = Game.setLevel( Game.settings.level );
 							if(next) {
+								if(Game.settings.level > Game.settings.lastLevel) $localStorage.set('arcadeLevel', Game.settings.level);
 								$scope.levelCounter++;
 								$scope.rows = [];
 								$timeout(function(){

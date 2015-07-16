@@ -1,5 +1,11 @@
 /* Empty. Add your own CSS if you like */
 
+.red {
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+	line-height: 3em;
+}
 
 .platform-browser .main-content{
 	width:500px;
@@ -38,9 +44,15 @@
 
 .screen{
 	background: #fff;
-	padding: 20% 0;
+	padding: 70px 0 0 0;
 	text-align:center;
 }
+
+.menuScreen{
+	max-width: 80%;
+	margin: 0 auto;
+}
+
 .board{
 	width:100%;
 	margin: 0px auto;
@@ -84,14 +96,25 @@
 	width: 100%;
 }
 
+.menu.open{
+	background: #FF525F;
+}
+
+.menu.close{
+	background: #81B3FF;
+}
+
 
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
 
 .dot {
-	width:2.3em;
-	height:2.3em;
+	width:2.2em;
+	height:2.2em;
+}
+.red{
+	line-height: 2.2em;
 }
 
 }
